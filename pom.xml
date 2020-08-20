@@ -2,12 +2,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
-
     <groupId>com.itplh.opensource</groupId>
     <artifactId>jeecg-spring-boot-starter</artifactId>
     <version>2.2.1</version>
@@ -29,20 +23,6 @@
         <aliyun.oss.version>3.6.0</aliyun.oss.version>
         <guava.version>26.0-jre</guava.version>
     </properties>
-
-    <developers>
-        <developer>
-            <name>tanpenggood</name>
-            <id>tanpenggood</id>
-            <email>tanpengswpu@163.com</email>
-        </developer>
-    </developers>
-
-    <scm>
-        <url>https://github.com/tanpenggood/jeecg-spring-boot-starter</url>
-        <connection>scm:git:git@github.com:tanpenggood/jeecg-spring-boot-starter.git</connection>
-        <developerConnection>scm:git:git@github.com:tanpenggood/jeecg-spring-boot-starter.git</developerConnection>
-    </scm>
 
     <dependencyManagement>
         <dependencies>
@@ -407,17 +387,96 @@
         </resources>
     </build>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>tanpenggood</name>
+            <id>tanpenggood</id>
+            <email>tanpengswpu@163.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/tanpenggood/jeecg-spring-boot-starter</url>
+        <connection>scm:git:git@github.com:tanpenggood/jeecg-spring-boot-starter.git</connection>
+        <developerConnection>scm:git:git@github.com:tanpenggood/jeecg-spring-boot-starter.git</developerConnection>
+    </scm>
+
     <distributionManagement>
-        <repository>
-            <id>jeecg</id>
-            <name>jeecg Repository</name>
-            <url>http://maven.jeecg.com:8090/nexus/content/repositories/jeecg</url>
-        </repository>
         <snapshotRepository>
-            <id>jeecg-snapshots</id>
-            <name>jeecg Snapshot Repository</name>
-            <url>http://maven.jeecg.com:8090/nexus/content/repositories/snapshots/</url>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>sonatype-oss-release</id>
+            <build>
+                <plugins>
+                    <!-- resources plugin,Maven 资源插件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.1.2</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- doc plugin,Maven API文档生成插件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.7</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <!--忽略Javadoc的编译错误-->
+                                <configuration>
+                                    <additionalparam>-Xdoclint:none</additionalparam>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- gpg plugin,用于签名认证 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
