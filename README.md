@@ -1,4 +1,5 @@
 ## 简介
+
 基于[jeecg-boot](https://github.com/zhangdaiscott/jeecg-boot)封装的`spring-boot-starter`,
 可用于快速开发，或作为项目的父pom，享受`jeecg-boot`的所有功能，且升级内核业务无感知！
 
