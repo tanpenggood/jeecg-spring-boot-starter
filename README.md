@@ -15,7 +15,7 @@
 	-  不需对`jeecg-boot`的源代码进行改动的人群
 	-  只需对`jeecg-boot`配置项进行调整即可满足开发的人群
 
-## Maven Install
+## Maven Dependency
 
 在项目的pom.xml的dependencies中加入以下内容:
 ```xml
