@@ -3,7 +3,7 @@
 基于[jeecg-boot](https://github.com/zhangdaiscott/jeecg-boot)封装的`spring-boot-starter`,
 可用于快速开发，享受`jeecg-boot`的所有功能，且升级内核业务无感知！
 
-(不定期同步其源码，力求始终为最新的版本，当前版本`2.2.1`)
+(不定期同步其源码，力求始终为最新的稳定版本，当前版本`2.2.1`)
 
 ## Feature
 
